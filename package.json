@@ -4,6 +4,7 @@
   "private": true,
   "description": "A production-ready full-stack starter with Next.js 15, Convex, Stripe, and shadcn/ui",
   "scripts": {
+    "setup": "bash scripts/setup.sh",
     "dev": "next dev --turbopack",
     "build": "next build",
     "build:prod": "NODE_ENV=production next build",

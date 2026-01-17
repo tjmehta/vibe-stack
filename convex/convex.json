@@ -1,5 +1,11 @@
 {
+  "$schema": "https://json.schemastore.org/convex.json",
   "node": {
-    "externalPackages": []
+    "externalPackages": [],
+    "nodeVersion": "20"
+  },
+  "codegen": {
+    "staticApi": true,
+    "staticDataModel": true
   }
 }
