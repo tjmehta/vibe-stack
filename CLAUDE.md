@@ -59,24 +59,30 @@ vibe-stack/
 └── .mcp.json              # MCP server configuration
 ```
 
-## MCP Servers (Pre-configured)
+## MCP Servers
 
-This template includes two MCP servers in `.mcp.json`:
+### Pre-configured (`.mcp.json`)
 
-### shadcn/ui MCP
-Direct access to the shadcn component registry:
-- Browse all available components and blocks
-- Install components with natural language ("add a login form")
-- Access current component documentation
+| Server | Purpose |
+|--------|---------|
+| **shadcn** | Browse & install UI components with natural language |
+| **convex** | Query tables, view logs, manage env vars |
+| **next-devtools** | Runtime diagnostics, route info, dev server logs (Next.js 16+) |
 
-### Convex MCP
-Full access to your Convex deployment:
-- Query and browse tables
-- Execute sandboxed read queries
-- View function metadata and logs
-- Manage environment variables
+### Optional: Vercel MCP (OAuth required)
 
-**Verify MCP connection:** Run `/mcp` in Claude Code to see status.
+Add Vercel's official MCP for deployment management:
+
+```bash
+claude mcp add --transport http vercel https://mcp.vercel.com
+```
+
+Then run `/mcp` to authenticate. Provides:
+- Search Vercel documentation
+- Manage projects and deployments
+- Analyze deployment logs
+
+**Verify all MCP connections:** Run `/mcp` in Claude Code.
 
 ## Pre-installed Skills
 

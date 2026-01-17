@@ -142,10 +142,16 @@ This template is fully configured for AI-assisted development with Claude Code.
 
 | Server | Purpose |
 |--------|---------|
-| **shadcn** | Browse & install components with natural language |
+| **shadcn** | Browse & install UI components with natural language |
 | **convex** | Query tables, view logs, manage env vars |
+| **next-devtools** | Runtime diagnostics, route info, dev server logs |
 
-Verify connection: Run `/mcp` in Claude Code.
+**Optional:** Add Vercel MCP for deployment management:
+```bash
+claude mcp add --transport http vercel https://mcp.vercel.com
+```
+
+Verify connections: Run `/mcp` in Claude Code.
 
 ### Pre-installed Skills (`.claude/skills/`)
 
