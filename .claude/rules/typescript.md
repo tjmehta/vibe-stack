@@ -12,8 +12,8 @@
 
 ```typescript
 // Import generated types
-import { Id } from "@/convex/_generated/dataModel"
 import { api } from "@/convex/_generated/api"
+import { Id } from "@/convex/_generated/dataModel"
 
 // Use Id<"tableName"> for IDs
 type UserId = Id<"users">
@@ -45,7 +45,7 @@ type ActionState = {
 
 export async function myAction(
   prevState: ActionState,
-  formData: FormData
+  formData: FormData,
 ): Promise<ActionState> {
   // ...
 }

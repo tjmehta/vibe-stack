@@ -81,7 +81,7 @@ export default function SignUpForm() {
                 minLength={8}
                 maxLength={100}
               />
-              <p className="text-xs text-muted-foreground">
+              <p className="text-muted-foreground text-xs">
                 Must be at least 8 characters
               </p>
             </div>

@@ -34,23 +34,24 @@ Open [http://localhost:3000](http://localhost:3000) to see your app.
 
 **Everything works immediately** - no configuration needed for development basics:
 
-| Feature | Without Config | With Config |
-|---------|---------------|-------------|
-| **Development** | `pnpm dev` | Full app with backend |
-| **Build** | `pnpm build` | Production-ready |
-| **Lint & Format** | `pnpm lint` | Same |
-| **Unit Tests** | `pnpm test` | Same |
-| **Type Check** | `pnpm tsc` | Same |
-| **E2E Tests** | - | `pnpm test:e2e` |
-| **Auth** | - | Login, signup, sessions |
-| **Database** | - | Real-time Convex |
-| **Payments** | - | Stripe subscriptions |
+| Feature           | Without Config | With Config             |
+| ----------------- | -------------- | ----------------------- |
+| **Development**   | `pnpm dev`     | Full app with backend   |
+| **Build**         | `pnpm build`   | Production-ready        |
+| **Lint & Format** | `pnpm lint`    | Same                    |
+| **Unit Tests**    | `pnpm test`    | Same                    |
+| **Type Check**    | `pnpm tsc`     | Same                    |
+| **E2E Tests**     | -              | `pnpm test:e2e`         |
+| **Auth**          | -              | Login, signup, sessions |
+| **Database**      | -              | Real-time Convex        |
+| **Payments**      | -              | Stripe subscriptions    |
 
 ## Connect Your Services
 
 ### 1. Convex (Database + Auth)
 
 When you run `npx convex dev`, the CLI will:
+
 1. Open your browser to sign in with GitHub
 2. Create a new Convex project (or select existing)
 3. Generate `.env.local` with your `CONVEX_DEPLOYMENT` URL
@@ -75,12 +76,14 @@ STRIPE_WEBHOOK_SECRET=whsec_...
 ```
 
 Then set up webhook endpoint in Stripe Dashboard:
+
 - URL: `https://your-domain.com/api/stripe/webhook`
 - Events: `checkout.session.completed`, `customer.subscription.*`
 
 ### 3. Vercel (Deploy) - Optional
 
 1. **Push to GitHub**
+
    ```bash
    git remote set-url origin https://github.com/YOUR_USERNAME/my-app.git
    git push -u origin main
@@ -175,13 +178,14 @@ This template is fully configured for AI-assisted development with Claude Code.
 
 ### MCP Servers (`.mcp.json`)
 
-| Server | Purpose |
-|--------|---------|
-| **shadcn** | Browse & install UI components with natural language |
-| **convex** | Query tables, view logs, manage env vars |
-| **next-devtools** | Runtime diagnostics, route info, dev server logs |
+| Server            | Purpose                                              |
+| ----------------- | ---------------------------------------------------- |
+| **shadcn**        | Browse & install UI components with natural language |
+| **convex**        | Query tables, view logs, manage env vars             |
+| **next-devtools** | Runtime diagnostics, route info, dev server logs     |
 
 **Optional:** Add Vercel MCP for deployment management:
+
 ```bash
 claude mcp add --transport http vercel https://mcp.vercel.com
 ```
@@ -190,13 +194,13 @@ Verify connections: Run `/mcp` in Claude Code.
 
 ### Pre-installed Skills (`.claude/skills/`)
 
-| Skill | Source | Description |
-|-------|--------|-------------|
-| **react-best-practices** | Vercel | 45 performance rules across 8 categories |
+| Skill                     | Source | Description                               |
+| ------------------------- | ------ | ----------------------------------------- |
+| **react-best-practices**  | Vercel | 45 performance rules across 8 categories  |
 | **web-design-guidelines** | Vercel | 100+ accessibility, performance, UX rules |
-| **code-review** | Custom | PR review with security checklist |
-| **testing** | Custom | Build verification patterns |
-| **deployment** | Custom | Convex + Vercel deployment guide |
+| **code-review**           | Custom | PR review with security checklist         |
+| **testing**               | Custom | Build verification patterns               |
+| **deployment**            | Custom | Convex + Vercel deployment guide          |
 
 ### Rules (`.claude/rules/`)
 
@@ -211,10 +215,10 @@ GitHub Actions workflows are pre-configured:
 
 ### Workflows
 
-| Workflow | Trigger | Purpose |
-|----------|---------|---------|
-| **CI** | Push/PR to main | Build, type check, lint |
-| **Deploy Convex** | Push to main (convex/**) | Deploy backend functions |
+| Workflow          | Trigger                    | Purpose                  |
+| ----------------- | -------------------------- | ------------------------ |
+| **CI**            | Push/PR to main            | Build, type check, lint  |
+| **Deploy Convex** | Push to main (convex/\*\*) | Deploy backend functions |
 
 ### Setup GitHub CI
 
@@ -231,6 +235,7 @@ Automatic dependency updates run weekly on Mondays.
 ## Testing
 
 ### Unit Tests (Vitest)
+
 ```bash
 pnpm test              # Watch mode
 pnpm test:run          # Single run
@@ -239,6 +244,7 @@ pnpm test:ui           # Interactive UI
 ```
 
 ### E2E Tests (Playwright)
+
 ```bash
 pnpm test:e2e          # Run all browsers
 pnpm test:e2e:ui       # Interactive UI
@@ -252,6 +258,7 @@ Pre-configured with [husky](https://typicode.github.io/husky/):
 - **commit-msg**: Enforces [Conventional Commits](https://www.conventionalcommits.org/)
 
 ### Commit Message Format
+
 ```
 <type>: <description>
 

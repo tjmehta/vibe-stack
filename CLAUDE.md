@@ -63,10 +63,10 @@ vibe-stack/
 
 ### Pre-configured (`.mcp.json`)
 
-| Server | Purpose |
-|--------|---------|
-| **shadcn** | Browse & install UI components with natural language |
-| **convex** | Query tables, view logs, manage env vars |
+| Server            | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| **shadcn**        | Browse & install UI components with natural language           |
+| **convex**        | Query tables, view logs, manage env vars                       |
 | **next-devtools** | Runtime diagnostics, route info, dev server logs (Next.js 16+) |
 
 ### Optional: Vercel MCP (OAuth required)
@@ -78,6 +78,7 @@ claude mcp add --transport http vercel https://mcp.vercel.com
 ```
 
 Then run `/mcp` to authenticate. Provides:
+
 - Search Vercel documentation
 - Manage projects and deployments
 - Analyze deployment logs
@@ -89,22 +90,28 @@ Then run `/mcp` to authenticate. Provides:
 Located in `.claude/skills/`:
 
 ### react-best-practices (Vercel)
+
 45 performance rules across 8 categories from Vercel Engineering:
+
 - **CRITICAL**: Eliminating waterfalls, bundle optimization
 - **HIGH**: Server-side performance
 - **MEDIUM**: Re-render optimization, rendering performance
 - **LOW**: JavaScript performance, advanced patterns
 
 ### web-design-guidelines (Vercel)
+
 100+ rules covering accessibility, performance, and UX.
 
 ### code-review
+
 PR review checklist with security and quality gates.
 
 ### testing
+
 Build verification and testing patterns.
 
 ### deployment
+
 Convex + Vercel deployment guide.
 
 ## Convex Backend
@@ -132,13 +139,13 @@ Uses Convex Auth with Password provider:
 ```typescript
 // Server-side (Server Actions)
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server"
-import { fetchQuery, fetchMutation } from "convex/nextjs"
+// Client-side
+import { useAuthActions } from "@convex-dev/auth/react"
+import { fetchMutation, fetchQuery } from "convex/nextjs"
 
 const token = await convexAuthNextjsToken()
 const user = await fetchQuery(api.currentUser.get, {}, { token })
 
-// Client-side
-import { useAuthActions } from "@convex-dev/auth/react"
 const { signIn, signOut } = useAuthActions()
 await signIn("password", { email, password, flow: "signIn" })
 ```
@@ -147,8 +154,9 @@ await signIn("password", { email, password, flow: "signIn" })
 
 ```typescript
 // convex/myModule.ts
-import { query, mutation } from "./_generated/server"
 import { v } from "convex/values"
+
+import { mutation, query } from "./_generated/server"
 import { auth } from "./auth"
 
 export const getData = query({
@@ -182,6 +190,7 @@ try {
 
 ```typescript
 "use client"
+
 import { useState } from "react"
 
 const [pending, setPending] = useState(false)
@@ -204,6 +213,7 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 ### Route Protection
 
 Middleware handles auth redirects (`middleware.ts`):
+
 - Protected routes: `/dashboard(.*)`, `/settings(.*)`
 - Auth routes: `/login`, `/signup`
 

@@ -18,6 +18,7 @@ defineTable({
 ### Indexes
 
 Always add indexes for:
+
 - Foreign keys (userId, teamId)
 - Frequently filtered fields
 - Fields used in sorting

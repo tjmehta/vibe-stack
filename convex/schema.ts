@@ -6,7 +6,9 @@ const isoTimestamp = () => v.string()
 
 // User settings schema - customize for your app
 const userSettings = v.object({
-  theme: v.optional(v.union(v.literal("light"), v.literal("dark"), v.literal("system"))),
+  theme: v.optional(
+    v.union(v.literal("light"), v.literal("dark"), v.literal("system")),
+  ),
   notifications: v.optional(v.boolean()),
 })
 

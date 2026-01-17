@@ -1,8 +1,8 @@
+import { fetchMutation } from "convex/nextjs"
 import Stripe from "stripe"
 
 import { api } from "@/convex/_generated/api"
 import { Id } from "@/convex/_generated/dataModel"
-import { fetchMutation } from "convex/nextjs"
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-04-30.basil",
@@ -20,9 +20,12 @@ export async function handleCheckoutCompleted(
     return
   }
 
-  const stripeSubscription = await stripe.subscriptions.retrieve(subscriptionId, {
-    expand: ["items.data.price.product"],
-  })
+  const stripeSubscription = await stripe.subscriptions.retrieve(
+    subscriptionId,
+    {
+      expand: ["items.data.price.product"],
+    },
+  )
 
   const plan = stripeSubscription.items.data[0]?.price
   const productId = (plan?.product as Stripe.Product).id

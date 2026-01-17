@@ -48,6 +48,7 @@ When reviewing code in this Vibe Stack project, check for:
 ## Output Format
 
 Provide feedback as:
+
 1. **Critical Issues** - Security or data integrity problems
 2. **Improvements** - Code quality suggestions
 3. **Nitpicks** - Minor style or preference items

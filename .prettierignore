@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+pnpm-lock.yaml
+
+# Build
+.next
+out
+build
+
+# Generated
+__generated__
+convex/_generated
+
+# Config files that shouldn't be formatted
+next.config.ts

@@ -4,11 +4,6 @@
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "ignore": [
-    "__generated__",
-    ".next",
-    "next.config.ts"
-  ],
   "importOrder": [
     "^([\"'])",
     "<TYPES>^(node:)",
@@ -28,7 +23,5 @@
     "^@/app/",
     "^[.]"
   ],
-  "importOrderSortSpecifiers": true,
-  "importOrderCaseInsensitive": true,
   "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"]
 }

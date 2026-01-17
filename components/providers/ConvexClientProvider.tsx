@@ -1,9 +1,9 @@
 "use client"
 
-import { ConvexQueryClient } from "@convex-dev/react-query"
 import { ConvexAuthNextjsProvider } from "@convex-dev/auth/nextjs"
-import { ConvexReactClient } from "convex/react"
+import { ConvexQueryClient } from "@convex-dev/react-query"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ConvexReactClient } from "convex/react"
 import { ReactNode, useEffect, useRef, useState } from "react"
 
 const convex = new ConvexReactClient(
@@ -26,7 +26,7 @@ export default function ConvexClientProvider({
             staleTime: Infinity,
           },
         },
-      })
+      }),
   )
 
   const isConnected = useRef(false)

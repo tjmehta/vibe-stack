@@ -17,6 +17,8 @@ jobs:
     name: Deploy to Convex
     runs-on: ubuntu-latest
     environment: production
+    # Only run when CONVEX_DEPLOY_KEY is configured
+    if: ${{ vars.CONVEX_CONFIGURED == 'true' }}
 
     steps:
       - name: Checkout

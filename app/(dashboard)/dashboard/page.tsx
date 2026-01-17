@@ -2,7 +2,13 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 export const metadata: Metadata = {
   title: "Dashboard | Vibe Stack",
@@ -28,8 +34,9 @@ export default function DashboardPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Start building your app by editing the dashboard and adding your own features.
+              <p className="text-muted-foreground text-sm">
+                Start building your app by editing the dashboard and adding your
+                own features.
               </p>
             </CardContent>
           </Card>
@@ -46,7 +53,7 @@ export default function DashboardPage() {
                 href="https://docs.convex.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-secondary hover:underline"
+                className="text-secondary block text-sm hover:underline"
               >
                 Convex Documentation
               </a>
@@ -54,7 +61,7 @@ export default function DashboardPage() {
                 href="https://nextjs.org/docs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-secondary hover:underline"
+                className="text-secondary block text-sm hover:underline"
               >
                 Next.js Documentation
               </a>
@@ -62,7 +69,7 @@ export default function DashboardPage() {
                 href="https://stripe.com/docs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-secondary hover:underline"
+                className="text-secondary block text-sm hover:underline"
               >
                 Stripe Documentation
               </a>

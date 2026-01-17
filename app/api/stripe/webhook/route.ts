@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 
-import { handleCheckoutCompleted, handleSubscriptionChange, stripe } from "@/lib/payments/stripe"
+import {
+  handleCheckoutCompleted,
+  handleSubscriptionChange,
+  stripe,
+} from "@/lib/payments/stripe"
 
 export const dynamic = "force-dynamic"
 
@@ -19,7 +23,7 @@ export async function POST(req: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     )
   } catch (err: any) {
     console.error("Webhook signature verification failed:", err.message)
@@ -29,7 +33,9 @@ export async function POST(req: NextRequest) {
   try {
     switch (event.type) {
       case "checkout.session.completed":
-        await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session)
+        await handleCheckoutCompleted(
+          event.data.object as Stripe.Checkout.Session,
+        )
         break
       case "customer.subscription.created":
       case "customer.subscription.updated":
@@ -43,6 +49,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ received: true })
   } catch (error) {
     console.error("Error processing webhook:", error)
-    return NextResponse.json({ error: "Webhook handler failed" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Webhook handler failed" },
+      { status: 500 },
+    )
   }
 }
