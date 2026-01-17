@@ -42,7 +42,7 @@
     "date-fns": "^4.1.0",
     "env-var": "^7.5.0",
     "lucide-react": "^0.501.0",
-    "next": "15.4.0-canary.110",
+    "next": "16.1.3",
     "postcss": "^8.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
