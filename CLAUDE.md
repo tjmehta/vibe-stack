@@ -57,6 +57,15 @@ Use these skills when their context applies:
 | **testing**               | Writing tests, debugging failures                 |
 | **deployment**            | Deploying to Convex/Vercel                        |
 
+### External Skills (Install via Claude Code)
+
+**Vercel React Best Practices** - Performance optimization for React/Next.js:
+
+```bash
+# Reference: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
+# 40+ rules covering waterfalls, bundle size, server rendering, re-renders
+```
+
 ### Pre-loaded Rules (`.claude/rules/`)
 
 These rules are automatically applied:
