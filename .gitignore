@@ -13,6 +13,13 @@ build
 .env.local
 .env.*.local
 
+# Convex env files (pulled from Convex, contain secrets)
+.env.convex.development
+.env.convex.production
+.env.convex.preview
+.env.convex-cli.production
+.env.convex-cli.preview
+
 # IDE
 .vscode
 .idea
