@@ -28,6 +28,56 @@ done
 
 ENV_TARGET="${ENV_TARGET:-all}"
 
+# Format env vars for .env file, handling multiline values
+# convex env list outputs KEY=value where value can span multiple lines
+# We need to detect multiline values and quote them properly
+format_env_output() {
+  local current_key=""
+  local current_value=""
+  local in_value=false
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    # Check if this line starts a new KEY=value pair
+    if [[ "$line" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]]; then
+      # Output previous key-value if we had one
+      if [[ -n "$current_key" ]]; then
+        output_env_var "$current_key" "$current_value"
+      fi
+      # Start new key-value
+      current_key="${line%%=*}"
+      current_value="${line#*=}"
+      in_value=true
+    elif [[ "$in_value" == "true" ]]; then
+      # This is a continuation of a multiline value
+      current_value+=$'\n'"$line"
+    fi
+  done
+
+  # Output the last key-value
+  if [[ -n "$current_key" ]]; then
+    output_env_var "$current_key" "$current_value"
+  fi
+}
+
+# Output a single env var in proper format
+output_env_var() {
+  local key="$1"
+  local value="$2"
+
+  # Check if value contains newlines (multiline)
+  if [[ "$value" == *$'\n'* ]]; then
+    # Multiline value - output with quotes, preserve newlines
+    echo "$key=\"$value\""
+  elif [[ "$value" == "{"* ]] || [[ "$value" == "["* ]]; then
+    # JSON value - use single quotes to avoid escaping issues
+    echo "$key='$value'"
+  else
+    # Simple value - just quote it
+    local escaped_value=$(echo "$value" | sed 's/"/\\"/g')
+    echo "$key=\"$escaped_value\""
+  fi
+}
+
 pull_convex_env() {
   local name="$1"
   local cmd="$2"
@@ -42,23 +92,13 @@ pull_convex_env() {
     echo "# Convex $name Environment Variables"
     echo "# Would write to: $output"
     echo ""
-    eval "$cmd" 2>/dev/null | while IFS= read -r line; do
-      key="${line%%=*}"
-      value="${line#*=}"
-      escaped_value=$(echo "$value" | sed 's/"/\\"/g')
-      echo "$key=\"$escaped_value\""
-    done
+    eval "$cmd" 2>/dev/null | format_env_output
   else
     {
       echo "# Convex $name Environment Variables"
       echo "# Pulled from Convex dashboard - DO NOT COMMIT"
       echo ""
-      eval "$cmd" 2>/dev/null | while IFS= read -r line; do
-        key="${line%%=*}"
-        value="${line#*=}"
-        escaped_value=$(echo "$value" | sed 's/"/\\"/g')
-        echo "$key=\"$escaped_value\""
-      done
+      eval "$cmd" 2>/dev/null | format_env_output
     } > "$output"
     echo "Created $output"
   fi
