@@ -35,7 +35,7 @@ jobs:
 
       - name: Checkout
         if: steps.check.outputs.configured == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
         if: steps.check.outputs.configured == 'true'
